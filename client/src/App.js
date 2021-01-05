@@ -8,6 +8,7 @@ import { CustomAppBar, Heading, Image } from "./styles/global";
 import memories from "./images/memories.png";
 
 import Form from "./components/form";
+import Posts from "./components/posts";
 
 function App() {
   const [currentID, setCurrentId] = useState(0);
@@ -31,7 +32,7 @@ function App() {
               spacing={3}
             >
               <Grid item xs={12} sm={7}>
-                <p>Post</p>
+                <Posts setCurrentId={setCurrentId} />
               </Grid>
 
               <Grid item xs={12} sm={4}>
