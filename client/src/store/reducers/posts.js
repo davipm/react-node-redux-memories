@@ -1,21 +1,62 @@
-import { CREATE, UPDATE, FETCH_ALL, LIKE, DELETE } from "../../constants";
+import {
+  CREATE,
+  UPDATE,
+  FETCH_ALL,
+  LIKE,
+  DELETE,
+  LOADING,
+  ERROR,
+} from "../../constants";
 
-export default function postsReducer(state = [], action) {
+const initialState = {
+  loading: null,
+  error: null,
+  posts: [],
+};
+
+export default function postsReducer(state = initialState, action) {
   switch (action.type) {
+    case LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
     case FETCH_ALL:
-      return action.payload;
+      return {
+        ...state,
+        loading: false,
+        posts: action.payload,
+      };
     case CREATE:
-      return [...state, action.payload];
+      return {
+        ...state,
+        posts: [...state, action.payload],
+      };
     case UPDATE:
-      return state.map((post) =>
-        post._id === action.payload._id ? action.payload : post
-      );
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        ),
+      };
     case LIKE:
-      return state.map((post) =>
-        post._id === action.payload._id ? action.payload : post
-      );
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        ),
+      };
     case DELETE:
-      return state.filter((post) => post._id !== action.payload);
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== action.payload),
+      };
     default:
       return state;
   }

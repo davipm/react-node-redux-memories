@@ -1,13 +1,24 @@
 import { toast } from "react-toastify";
-import { CREATE, DELETE, FETCH_ALL, LIKE, UPDATE } from "../../constants";
+import {
+  CREATE,
+  DELETE,
+  FETCH_ALL,
+  LIKE,
+  UPDATE,
+  LOADING,
+  ERROR,
+} from "../../constants";
 import api from "../../services/api";
 
 export const getPost = () => async (dispatch) => {
+  dispatch({ type: LOADING });
+
   try {
     const { data } = await api.get("/posts");
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     toast.error("Error while load posts");
+    dispatch({ type: ERROR });
   }
 };
 
