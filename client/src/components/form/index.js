@@ -29,7 +29,7 @@ export default function Form({ currentId, setCurrentId }) {
     title: "",
     message: "",
     tags: "",
-    selectedFiles: "",
+    selectedFile: "",
   });
 
   const post = useSelector((state) =>
@@ -48,7 +48,7 @@ export default function Form({ currentId, setCurrentId }) {
       title: "",
       message: "",
       tags: "",
-      selectedFiles: "",
+      selectedFile: "",
     });
   }
 
@@ -123,7 +123,7 @@ export default function Form({ currentId, setCurrentId }) {
             type="file"
             multiple={false}
             onDone={({ base64 }) =>
-              setPostData({ ...postData, selectedFiles: base64 })
+              setPostData({ ...postData, selectedFile: base64 })
             }
           />
         </FileInput>
