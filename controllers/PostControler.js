@@ -1,9 +1,6 @@
-import express from "express";
 import mongoose from "mongoose";
 
 import PostSchema from "../models/Posts";
-
-const router = express.Router();
 
 /**
  *
@@ -123,5 +120,3 @@ export const likePost = async (req, res) => {
 
   res.status(200).json(updatedPost);
 };
-
-export default router;
