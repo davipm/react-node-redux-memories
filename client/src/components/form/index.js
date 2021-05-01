@@ -32,8 +32,8 @@ export default function Form({ currentId, setCurrentId }) {
     selectedFile: "",
   });
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
+  const post = useSelector(({ posts: items }) =>
+    currentId ? items.posts.find((message) => message._id === currentId) : null
   );
 
   useEffect(() => {
@@ -84,6 +84,7 @@ export default function Form({ currentId, setCurrentId }) {
           name="creator"
           variant="outlined"
           label="Creator"
+          required
           fullWidth
           value={postData.creator}
           onChange={handleChange}
@@ -93,6 +94,7 @@ export default function Form({ currentId, setCurrentId }) {
           name="title"
           variant="outlined"
           label="Title"
+          required
           fullWidth
           value={postData.title}
           onChange={handleChange}
@@ -102,6 +104,7 @@ export default function Form({ currentId, setCurrentId }) {
           name="message"
           variant="outlined"
           label="Message"
+          required
           multiline
           fullWidth
           rows={4}
@@ -112,7 +115,7 @@ export default function Form({ currentId, setCurrentId }) {
         <TextField
           name="tags"
           variant="outlined"
-          label="Tags (coma separeted)"
+          label="Tags (coma separated)"
           fullWidth
           value={postData.tags}
           onChange={handleChange}

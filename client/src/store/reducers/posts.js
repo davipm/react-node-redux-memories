@@ -36,7 +36,7 @@ export default function postsReducer(state = initialState, action) {
     case CREATE:
       return {
         ...state,
-        posts: [...state, action.payload],
+        posts: [...state.posts, action.payload],
       };
     case UPDATE:
       return {

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Post from "./post";
 
 export default function Posts({ setCurrentId }) {
-  const { posts, loading, error } = useSelector((state) => state.posts);
+  const { posts, loading, error } = useSelector(({ posts }) => posts);
 
   if (loading) return <CircularProgress />;
 

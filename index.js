@@ -28,8 +28,8 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-app.use("/posts", postRouters);
+app.use(postRouters);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3333, () => {
   console.log(`Memories running in port ${process.env.PORT}`);
 });
