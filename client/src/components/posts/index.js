@@ -8,7 +8,7 @@ export default function Posts({ setCurrentId }) {
 
   if (loading) return <CircularProgress />;
 
-  if (error) return <Typography variant="h6">Error!</Typography>;
+  if (error || typeof posts !== "object") return <Typography variant="h6">Error!</Typography>;
 
   return (
     <Grid container alignItems="stretch" spacing={3}>

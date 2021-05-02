@@ -11,10 +11,9 @@ import PostSchema from "../models/Posts";
 export const getPosts = async (req, res) => {
   try {
     const postMessages = await PostSchema.find();
-
-    res.status(200).json(postMessages);
+    return res.status(200).json(postMessages);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    return  res.status(404).json({ message: error.message });
   }
 };
 
@@ -29,10 +28,9 @@ export const getPost = async (req, res) => {
 
   try {
     const post = await PostSchema.findById(id);
-
-    res.status(200).json(post);
+    return res.status(200).json(post);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    return res.status(404).json({ message: error.message });
   }
 };
 
@@ -55,10 +53,9 @@ export const createPost = async (req, res) => {
 
   try {
     await newPostMessage.save();
-
-    res.status(201).json(newPostMessage);
+    return res.status(201).json(newPostMessage);
   } catch (error) {
-    res.status(409).json({ message: error.message });
+    return res.status(409).json({ message: error.message });
   }
 };
 
@@ -79,7 +76,7 @@ export const updatePost = async (req, res) => {
 
   await PostSchema.findByIdAndUpdate(id, updatedPost, { new: true });
 
-  res.json(updatedPost);
+  return res.json(updatedPost);
 };
 
 /**
@@ -97,7 +94,7 @@ export const deletePost = async (req, res) => {
     if (err) return res.status(404).send(`No post with id: ${id}`);
   });
 
-  res.status(200).json({ message: "Post deleted successfully." });
+  return res.status(200).json({ message: "Post deleted successfully." });
 };
 
 /**
@@ -118,5 +115,5 @@ export const likePost = async (req, res) => {
     { new: true }
   );
 
-  res.status(200).json(updatedPost);
+  return res.status(200).json(updatedPost);
 };
